@@ -4,10 +4,12 @@ class Scene1 extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image("background", "assets/sky.png");
-    this.load.image("background1", "assets/bg-1.png");
-    this.load.image("background2", "assets/bg-2.png");
-    this.load.image("skeleton", "assets/skeleton.png");
+    this.load.image("background1", "assets/plx/plx-1.png");
+    this.load.image("background2", "assets/plx/plx-2.png");
+    this.load.image("background3", "assets/plx/plx-3.png");
+    this.load.image("background4", "assets/plx/plx-4.png");
+    this.load.image("background5", "assets/plx/plx-5.png");
+
     this.load.spritesheet("warrior", "assets/warrior.png", {
       frameWidth: 50,
       frameHeight: 37

@@ -22,52 +22,39 @@ class Scene2 extends Phaser.Scene {
     );
     this.background2.setOrigin(0, 0);
 
-    this.skeleton1 = this.add.image(
-      config.width / 2,
-      config.height / 1.5,
-      "skeleton"
+    this.background3 = this.add.tileSprite(
+      0,
+      0,
+      config.width,
+      config.height,
+      "background3"
     );
-    this.skeleton1.setScale(2);
+    this.background3.setOrigin(0, 0);
 
-    this.skeleton2 = this.add.image(
-      config.width / 2,
-      config.height / 2,
-      "skeleton"
+    this.background4 = this.add.tileSprite(
+      0,
+      0,
+      config.width,
+      config.height,
+      "background4"
     );
-    this.skeleton2.setScale(3);
+    this.background4.setOrigin(0, 0);
 
-    this.skeleton3 = this.add.image(
-      config.width / 2,
-      config.height / 3,
-      "skeleton"
+    this.background5 = this.add.tileSprite(
+      0,
+      0,
+      config.width,
+      config.height,
+      "background5"
     );
-    this.skeleton3.setScale(2);
-
-    this.add.text(20, 20, "Playing", {
-      font: "25px Arial",
-      fill: "yellow"
-    });
-  }
-
-  moveSkeleton(skeleton, speed) {
-    skeleton.x += speed;
-    if (skeleton.x > config.width) {
-      this.resetSkeletonPos(skeleton);
-    }
-  }
-
-  resetSkeletonPos(skeleton) {
-    skeleton.x = 0;
-    var randomY = Phaser.Math.Between(0, config.height);
-    skeleton.y = randomY;
+    this.background5.setOrigin(0, 0);
   }
 
   update() {
-    this.moveSkeleton(this.skeleton1, 1.6);
-    this.moveSkeleton(this.skeleton2, 1.2);
-    this.moveSkeleton(this.skeleton3, 1.6);
-
-    this.background1.tilePositionX -= 0.5;
-    this.background2.tilePositionX -= 0.2;
+    this.background1.tilePositionX += 0.1;
+    this.background2.tilePositionX += 0.2;
+    this.background3.tilePositionX += 0.3;
+    this.background4.tilePositionX += 0.4;
+    this.background5.tilePositionX += 0.7;
   }
 }
