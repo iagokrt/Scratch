@@ -48,6 +48,14 @@ class Scene2 extends Phaser.Scene {
       "background5"
     );
     this.background5.setOrigin(0, 0);
+
+    this.groundTile = this.add.tileSprite(
+      300,
+      330,
+      config.width,
+      config.height,
+      "groundTile"
+    );
   }
 
   update() {

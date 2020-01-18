@@ -10,6 +10,8 @@ class Scene1 extends Phaser.Scene {
     this.load.image("background4", "assets/plx/plx-4.png");
     this.load.image("background5", "assets/plx/plx-5.png");
 
+    this.load.image("groundTile", "assets/ground.png");
+
     this.load.spritesheet("warrior", "assets/warrior.png", {
       frameWidth: 50,
       frameHeight: 37
