@@ -9,7 +9,7 @@ var config = {
     arcade: {
       debug: false
     }
-  
+  }
 };
 
 window.onload = function() {

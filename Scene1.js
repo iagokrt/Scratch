@@ -16,10 +16,22 @@ class Scene1 extends Phaser.Scene {
       frameWidth: 50,
       frameHeight: 37
     });
+
+    this.load.spritesheet("skeleton", "assets/skeleton.png", {
+      frameWidth: 22,
+      frameHeight: 33
+    });
   }
 
   create() {
     this.add.text(20, 20, "Loading Game...");
     this.scene.start("playGame");
+
+    this.anims.create({
+      key: "skeleton_anim",
+      frames: this.anims.generateFrameNumbers("skeleton"),
+      frameRate: 20,
+      repeat: -1
+    });
   }
 }

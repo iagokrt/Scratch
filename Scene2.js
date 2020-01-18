@@ -56,6 +56,13 @@ class Scene2 extends Phaser.Scene {
       config.height,
       "groundTile"
     );
+
+    this.skeleton1 = this.add.sprite(
+      config.width / 2 - 50,
+      config.height / 1.2,
+      "skeleton"
+    );
+    this.skeleton1.play("skeleton_anim");
   }
 
   update() {
@@ -64,5 +71,21 @@ class Scene2 extends Phaser.Scene {
     this.background3.tilePositionX += 0.3;
     this.background4.tilePositionX += 0.4;
     this.background5.tilePositionX += 0.7;
+
+    this.moveSkeleton(this.skeleton1, 2.2);
+  }
+
+  moveSkeleton(skeleton, speed) {
+    skeleton.x -= speed;
+    if (skeleton.x <= config.width / 600) {
+      this.resetSkeletonPos(skeleton);
+    }
+    /* if (skeleton.x > config.height) {
+      this.resetSkeletonPos(skeleton);
+    }  */
+  }
+
+  resetSkeletonPos(skeleton) {
+    skeleton.x = 600;
   }
 }
