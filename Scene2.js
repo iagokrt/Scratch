@@ -72,7 +72,7 @@ class Scene2 extends Phaser.Scene {
     this.background4.tilePositionX += 0.4;
     this.background5.tilePositionX += 0.7;
 
-    this.moveSkeleton(this.skeleton1, 2.2);
+    this.moveSkeleton(this.skeleton1, 0.7);
   }
 
   moveSkeleton(skeleton, speed) {
