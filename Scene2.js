@@ -49,13 +49,16 @@ class Scene2 extends Phaser.Scene {
     );
     this.background5.setOrigin(0, 0);
 
-    this.groundTile = this.add.tileSprite(
-      300,
-      330,
-      config.width,
-      config.height,
-      "groundTile"
-    );
+    var platforms = this.physics.add.staticGroup();
+
+    //  Here we create the ground.
+    // add the ground layer which is only 48 pixels tall
+    var ground = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+    var floor = -24;
+    for (var i = 0; i <= ground.length; i++) {
+      floor += 48;
+      platforms.create(floor, 228, "groundTile").refreshBody();
+    }
 
     this.skeleton1 = this.add.sprite(
       config.width / 2 - 50,
@@ -63,6 +66,24 @@ class Scene2 extends Phaser.Scene {
       "skeleton"
     );
     this.skeleton1.play("skeleton_anim");
+
+    this.physics.world.setBoundsCollision();
+
+    // group with physics
+    this.enemies = this.physics.add.group();
+    this.enemies.add(this.skeleton1);
+
+    this.skeleton1.setInteractive();
+
+    this.player = this.physics.add.sprite(
+      config.width / 6,
+      config.height - 43,
+      "warrior"
+    );
+    this.player.play("run");
+
+    this.cursorKeys = this.input.keyboard.createCursorKeys();
+    this.player.setCollideWorldBounds(true);
   }
 
   update() {
@@ -73,16 +94,25 @@ class Scene2 extends Phaser.Scene {
     this.background5.tilePositionX += 0.7;
 
     this.moveSkeleton(this.skeleton1, 0.7);
+
+    this.movePlayerManager();
+  }
+
+  movePlayerManager() {
+    this.player.setVelocity(0);
+
+    if (this.cursorKeys.right.isDown) {
+      this.player.setVelocityX(gameSettings.playerSpeed);
+    } else if (this.cursorKeys.left.isDown) {
+      this.player.setVelocityX(-gameSettings.playerSpeed);
+    }
   }
 
   moveSkeleton(skeleton, speed) {
     skeleton.x -= speed;
-    if (skeleton.x <= config.width / 600) {
-      this.resetSkeletonPos(skeleton);
-    }
-    /* if (skeleton.x > config.height) {
-      this.resetSkeletonPos(skeleton);
-    }  */
+    //if (skeleton.x <= config.width / 600) {
+    // this.resetSkeletonPos(skeleton);
+    //}
   }
 
   resetSkeletonPos(skeleton) {

@@ -9,10 +9,9 @@ class Scene1 extends Phaser.Scene {
     this.load.image("background3", "assets/plx/plx-3.png");
     this.load.image("background4", "assets/plx/plx-4.png");
     this.load.image("background5", "assets/plx/plx-5.png");
-
     this.load.image("groundTile", "assets/ground.png");
 
-    this.load.spritesheet("warrior", "assets/warrior.png", {
+    this.load.spritesheet("player", "assets/adventurerSheet.png", {
       frameWidth: 50,
       frameHeight: 37
     });
@@ -30,6 +29,28 @@ class Scene1 extends Phaser.Scene {
     this.anims.create({
       key: "skeleton_anim",
       frames: this.anims.generateFrameNumbers("skeleton"),
+      frameRate: 20,
+      repeat: -1
+    });
+
+    //  Our player animations, running right, running left - todo: jumping.
+
+    this.anims.create({
+      key: "run",
+      frames: this.anims.generateFrameNumbers("player", {
+        start: 8,
+        end: 13
+      }),
+      frameRate: 10,
+      repeat: -1
+    });
+
+    this.anims.create({
+      key: "jump",
+      frames: this.anims.generateFrameNumbers("player", {
+        start: 14,
+        end: 23
+      }),
       frameRate: 20,
       repeat: -1
     });

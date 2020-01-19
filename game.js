@@ -1,5 +1,9 @@
+var gameSettings = {
+  playerSpeed: 100
+};
+
 var config = {
-  width: 600,
+  width: 400,
   height: 248,
   backgroundColor: "7159c1",
   scene: [Scene1, Scene2],
@@ -12,6 +16,4 @@ var config = {
   }
 };
 
-window.onload = function() {
-  var game = new Phaser.Game(config);
-};
+var game = new Phaser.Game(config);
