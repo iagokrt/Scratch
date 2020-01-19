@@ -35,7 +35,7 @@ class Scene2 extends Phaser.Scene {
       0,
       0,
       config.width,
-      config.height,
+      0,
       "background4"
     );
     this.background4.setOrigin(0, 0);
@@ -48,17 +48,17 @@ class Scene2 extends Phaser.Scene {
       "background5"
     );
     this.background5.setOrigin(0, 0);
+    // Fim do Background Parallax
 
-    var platforms = this.physics.add.staticGroup();
+    // Plataformas
 
-    //  Here we create the ground.
-    // add the ground layer which is only 48 pixels tall
-    var ground = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
-    var floor = -24;
-    for (var i = 0; i <= ground.length; i++) {
-      floor += 48;
-      platforms.create(floor, 228, "groundTile").refreshBody();
-    }
+    this.ground = this.add.tileSprite(
+      200,
+      config.height + 80,
+      config.width,
+      config.height,
+      "groundTile"
+    );
 
     this.skeleton1 = this.add.sprite(
       config.width / 2 - 50,
@@ -69,9 +69,11 @@ class Scene2 extends Phaser.Scene {
 
     this.physics.world.setBoundsCollision();
 
-    // group with physics
+    // groups with physics
     this.enemies = this.physics.add.group();
     this.enemies.add(this.skeleton1);
+
+    this.platforms = this.physics.add.group();
 
     this.skeleton1.setInteractive();
 
@@ -95,6 +97,8 @@ class Scene2 extends Phaser.Scene {
 
     this.moveSkeleton(this.skeleton1, 0.7);
 
+    this.ground.tilePositionX += 1;
+
     this.movePlayerManager();
   }
 
@@ -106,6 +110,10 @@ class Scene2 extends Phaser.Scene {
     } else if (this.cursorKeys.left.isDown) {
       this.player.setVelocityX(-gameSettings.playerSpeed);
     }
+  }
+
+  groundParallax(ground, speed) {
+    ground.x -= speed;
   }
 
   moveSkeleton(skeleton, speed) {
