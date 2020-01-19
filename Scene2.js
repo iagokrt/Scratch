@@ -95,9 +95,9 @@ class Scene2 extends Phaser.Scene {
     this.background4.tilePositionX += 0.4;
     this.background5.tilePositionX += 0.7;
 
-    this.moveSkeleton(this.skeleton1, 0.7);
-
     this.ground.tilePositionX += 1;
+
+    this.moveSkeleton(this.skeleton1, 0.7);
 
     this.movePlayerManager();
   }
@@ -112,18 +112,14 @@ class Scene2 extends Phaser.Scene {
     }
   }
 
-  groundParallax(ground, speed) {
-    ground.x -= speed;
-  }
-
   moveSkeleton(skeleton, speed) {
     skeleton.x -= speed;
-    //if (skeleton.x <= config.width / 600) {
-    // this.resetSkeletonPos(skeleton);
-    //}
+    if (skeleton.x < 1) {
+      this.resetSkeletonPos(skeleton);
+    }
   }
 
   resetSkeletonPos(skeleton) {
-    skeleton.x = 600;
+    skeleton.x = 401;
   }
 }
