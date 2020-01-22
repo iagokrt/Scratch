@@ -4,6 +4,7 @@ class Scene2 extends Phaser.Scene {
   }
 
   create() {
+    // Background parallax
     this.background1 = this.add.tileSprite(
       0,
       0,
@@ -48,10 +49,10 @@ class Scene2 extends Phaser.Scene {
       "background5"
     );
     this.background5.setOrigin(0, 0);
-    // Fim do Background Parallax
+    //-.-'
 
     // Plataformas
-
+    // Plataforma principal
     this.ground = this.add.tileSprite(
       200,
       config.height + 80,
@@ -59,7 +60,8 @@ class Scene2 extends Phaser.Scene {
       config.height,
       "groundTile"
     );
-
+    //-.-'
+    // personagens, itens, ..
     this.skeleton1 = this.add.sprite(
       config.width / 2 - 50,
       config.height / 1.2,
@@ -67,12 +69,15 @@ class Scene2 extends Phaser.Scene {
     );
     this.skeleton1.play("skeleton_anim");
 
+    // Adiciona colisão para limites da cena
     this.physics.world.setBoundsCollision();
 
-    // groups with physics
+    // Adicionando Física
+    // grupo enemies
     this.enemies = this.physics.add.group();
     this.enemies.add(this.skeleton1);
 
+    // grupo platforms
     this.platforms = this.physics.add.group();
 
     this.skeleton1.setInteractive();
